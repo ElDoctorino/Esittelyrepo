@@ -1,0 +1,359 @@
+<html>
+<head>
+	<title>BINGO</title>
+	<link rel="stylesheet" rev="stylesheet" href="bingo-card.css" />
+<script type="text/javascript">
+window.onload = initAll;
+var usedNums = new Array(76);
+var usedNums2 = new Array(76);
+var usedNums3 = new Array(76);
+var usedNums4 = new Array(76);
+
+function initAll() {
+  if (document.getElementById) {
+    document.getElementById("reload").onclick = anotherCard;
+	newCard();
+	newCard2();
+	newCard3();
+	newCard4();
+  }
+  else{
+    alert("Your browser does not support this script.");
+  }
+}
+
+function newCard() {
+  for(var a=0 ; a<24 ; a++){
+      setSquare(a);
+    }
+}
+
+function newCard2() {
+  for(var b=0 ; b<24 ; b++){
+      setBox(b);
+    }
+}
+
+function newCard3() {
+  for(var c=0 ; c<24 ; c++){
+      setLaatikko(c);
+    }
+}
+
+function newCard4() {
+  for(var d=0 ; d<24 ; d++){
+      setNelio(d);
+    }
+}
+
+function setSquare(thisSquare){
+  var currentSquare = "square" + thisSquare;
+  var colPlace = new Array(0,1,2,3,4,0,1,2,3,4,0,1,3,4,0,1,2,3,4,0,1,2,3,4);
+  var colBasis = colPlace[thisSquare] * 15;
+  var newNum = colBasis + getNewNum() + 1;
+
+  do{
+    newNum = colBasis + getNewNum() + 1;
+  }while(usedNums[newNum]);
+  
+  usedNums[newNum] = true;
+  document.getElementById(currentSquare).innerHTML = newNum;
+}
+
+function setBox(thisBox){
+  var currentBox = "box" + thisBox;
+  var colPlace = new Array(0,1,2,3,4,0,1,2,3,4,0,1,3,4,0,1,2,3,4,0,1,2,3,4);
+  var colBasis = colPlace[thisBox] * 15;
+  var newNum = colBasis + getNewNum() + 1;
+
+  do{
+    newNum = colBasis + getNewNum() + 1;
+  }while(usedNums2[newNum]);
+  
+  usedNums2[newNum] = true;
+  document.getElementById(currentBox).innerHTML = newNum;
+}
+
+function setLaatikko(thisLaatikko){
+  var currentLaatikko = "laatikko" + thisLaatikko;
+  var colPlace = new Array(0,1,2,3,4,0,1,2,3,4,0,1,3,4,0,1,2,3,4,0,1,2,3,4);
+  var colBasis = colPlace[thisLaatikko] * 15;
+  var newNum = colBasis + getNewNum() + 1;
+
+  do{
+    newNum = colBasis + getNewNum() + 1;
+  }while(usedNums3[newNum]);
+  
+  usedNums3[newNum] = true;
+  document.getElementById(currentLaatikko).innerHTML = newNum;
+}
+
+function setNelio(thisNelio){
+  var currentNelio = "nelio" + thisNelio;
+  var colPlace = new Array(0,1,2,3,4,0,1,2,3,4,0,1,3,4,0,1,2,3,4,0,1,2,3,4);
+  var colBasis = colPlace[thisNelio] * 15;
+  var newNum = colBasis + getNewNum() + 1;
+
+  do{
+    newNum = colBasis + getNewNum() + 1;
+  }while(usedNums4[newNum]);
+  
+  usedNums4[newNum] = true;
+  document.getElementById(currentNelio).innerHTML = newNum;
+}
+
+function getNewNum() {
+  return Math.floor(Math.random() * 15);
+}
+
+function anotherCard() {
+  for (var i = 1; i < usedNums.length; i++) {
+    usedNums[i] = false;
+  };
+  for (var i = 1; i < usedNums2.length; i++) {
+    usedNums2[i] = false;
+  };
+  for (var i = 1; i < usedNums3.length; i++) {
+    usedNums3[i] = false;
+  };
+  for (var i = 1; i < usedNums4.length; i++) {
+    usedNums4[i] = false;
+  };
+  newCard();
+  newCard2();
+  newCard3();
+  newCard4();
+  return false;
+}
+function printDiv(divName){
+	var printContents = document.getElementById(divName).innerHTML;
+	var originalContents = document.body.innerHTML;
+
+	document.body.innerHTML = printContents;
+
+	window.print();
+
+	document.body.innerHTML = originalContents;
+	location.reload(true);
+}
+</script>
+<style>
+@media print {
+	* {
+		-webkit-print-color-adjust: exact;
+	}
+}
+table {
+	margin-left:auto; 
+    margin-right:auto;
+}
+th, td {
+	width: 75px;
+	height: 75px;
+}
+.free{
+	background-image: url("./joker.png");
+	background-repeat: no-repeat;
+	text-align: center;
+	margin: auto;
+	background-size: 95px 75px;
+}
+.header {
+	background-color: black;
+	color: white;
+}
+</style>
+</head>
+<body>
+<div id="test">
+<br>
+<br>
+<table>
+	<tr>
+		<th class="header" width="20%">B</th>
+		<th class="header" width="20%">I</th>
+		<th class="header" width="20%">N</th>
+		<th class="header" width="20%">G</th>
+		<th class="header" width="20%">O</th>
+	</tr>
+	<tr>
+		<td id="square0">&nbsp;</td>
+		<td id="square1">&nbsp;</td>
+		<td id="square2">&nbsp;</td>
+		<td id="square3">&nbsp;</td>
+		<td id="square4">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="square5">&nbsp;</td>
+		<td id="square6">&nbsp;</td>
+		<td id="square7">&nbsp;</td>
+		<td id="square8">&nbsp;</td>
+		<td id="square9">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="square10">&nbsp;</td>
+		<td id="square11">&nbsp;</td>
+		<td class="free"></td>
+		<td id="square12">&nbsp;</td>
+		<td id="square13">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="square14">&nbsp;</td>
+		<td id="square15">&nbsp;</td>
+		<td id="square16">&nbsp;</td>
+		<td id="square17">&nbsp;</td>
+		<td id="square18">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="square19">&nbsp;</td>
+		<td id="square20">&nbsp;</td>
+		<td id="square21">&nbsp;</td>
+		<td id="square22">&nbsp;</td>
+		<td id="square23">&nbsp;</td>
+	</tr>
+</table>
+<br>
+<table>
+	<tr>
+		<th class="header" width="20%">B</th>
+		<th class="header" width="20%">I</th>
+		<th class="header" width="20%">N</th>
+		<th class="header" width="20%">G</th>
+		<th class="header" width="20%">O</th>
+	</tr>
+	<tr>
+		<td id="box0">&nbsp;</td>
+		<td id="box1">&nbsp;</td>
+		<td id="box2">&nbsp;</td>
+		<td id="box3">&nbsp;</td>
+		<td id="box4">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="box5">&nbsp;</td>
+		<td id="box6">&nbsp;</td>
+		<td id="box7">&nbsp;</td>
+		<td id="box8">&nbsp;</td>
+		<td id="box9">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="box10">&nbsp;</td>
+		<td id="box11">&nbsp;</td>
+		<td class="free"></td>
+		<td id="box12">&nbsp;</td>
+		<td id="box13">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="box14">&nbsp;</td>
+		<td id="box15">&nbsp;</td>
+		<td id="box16">&nbsp;</td>
+		<td id="box17">&nbsp;</td>
+		<td id="box18">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="box19">&nbsp;</td>
+		<td id="box20">&nbsp;</td>
+		<td id="box21">&nbsp;</td>
+		<td id="box22">&nbsp;</td>
+		<td id="box23">&nbsp;</td>
+	</tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<table>
+	<tr>
+		<th class="header" width="20%">B</th>
+		<th class="header" width="20%">I</th>
+		<th class="header" width="20%">N</th>
+		<th class="header" width="20%">G</th>
+		<th class="header" width="20%">O</th>
+	</tr>
+	<tr>
+		<td id="laatikko0">&nbsp;</td>
+		<td id="laatikko1">&nbsp;</td>
+		<td id="laatikko2">&nbsp;</td>
+		<td id="laatikko3">&nbsp;</td>
+		<td id="laatikko4">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="laatikko5">&nbsp;</td>
+		<td id="laatikko6">&nbsp;</td>
+		<td id="laatikko7">&nbsp;</td>
+		<td id="laatikko8">&nbsp;</td>
+		<td id="laatikko9">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="laatikko10">&nbsp;</td>
+		<td id="laatikko11">&nbsp;</td>
+		<td class="free"></td>
+		<td id="laatikko12">&nbsp;</td>
+		<td id="laatikko13">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="laatikko14">&nbsp;</td>
+		<td id="laatikko15">&nbsp;</td>
+		<td id="laatikko16">&nbsp;</td>
+		<td id="laatikko17">&nbsp;</td>
+		<td id="laatikko18">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="laatikko19">&nbsp;</td>
+		<td id="laatikko20">&nbsp;</td>
+		<td id="laatikko21">&nbsp;</td>
+		<td id="laatikko22">&nbsp;</td>
+		<td id="laatikko23">&nbsp;</td>
+	</tr>
+</table>
+<br>
+<table>
+	<tr>
+		<th class="header" width="20%">B</th>
+		<th class="header" width="20%">I</th>
+		<th class="header" width="20%">N</th>
+		<th class="header" width="20%">G</th>
+		<th class="header" width="20%">O</th>
+	</tr>
+	<tr>
+		<td id="nelio0">&nbsp;</td>
+		<td id="nelio1">&nbsp;</td>
+		<td id="nelio2">&nbsp;</td>
+		<td id="nelio3">&nbsp;</td>
+		<td id="nelio4">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="nelio5">&nbsp;</td>
+		<td id="nelio6">&nbsp;</td>
+		<td id="nelio7">&nbsp;</td>
+		<td id="nelio8">&nbsp;</td>
+		<td id="nelio9">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="nelio10">&nbsp;</td>
+		<td id="nelio11">&nbsp;</td>
+		<td class="free"></td>
+		<td id="nelio12">&nbsp;</td>
+		<td id="nelio13">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="nelio14">&nbsp;</td>
+		<td id="nelio15">&nbsp;</td>
+		<td id="nelio16">&nbsp;</td>
+		<td id="nelio17">&nbsp;</td>
+		<td id="nelio18">&nbsp;</td>
+	</tr>
+	<tr>
+		<td id="nelio19">&nbsp;</td>
+		<td id="nelio20">&nbsp;</td>
+		<td id="nelio21">&nbsp;</td>
+		<td id="nelio22">&nbsp;</td>
+		<td id="nelio23">&nbsp;</td>
+	</tr>
+</table>
+</div>
+<div style="text-align:center;">
+<button onclick="printDiv('test')">Tulosta</button>
+<p><a href="" id="reload">Paina tästä </a> saadaksesi uudet kortit</p>
+</div>
+</body>
+</html>
